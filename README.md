@@ -7,4 +7,4 @@ _Cohete.xlms presenta un cohete con un tanque de combustible que se consume con 
 
 Tiro Parabolico.xlsm presenta tres gráficas, Posición x, Posición y, Posición en 2D, del tiro parabólico en el vacío (sin fricción o pérdida de energía).
 
-ParacaidistaBaumgartner.xlsm presenta la grafica de velocidad vs tiempo, solución RK, variando el coeficiente de fricción con el aire calculada mediante interpolación polinomial segmentada (SPline) de tercer orden.
+ParacaidistaBaumgartner.xlsm presenta la grafica de velocidad vs tiempo, solución RK, variando el coeficiente de fricción con el aire calculada mediante interpolación polinomial segmentada (SPline).
