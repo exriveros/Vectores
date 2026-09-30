@@ -15,15 +15,16 @@ En el archivo Vectores.py se tienen las funciones:
 - ProdPunto3D(xa, ya, za, xb, yb, zb)
 - ProdCruz3D(xa, ya, za, xb, yb, zb)
   
-En el archivo CVector.py se define la clase, funciones y propiedades:
-- ## Funciones:
+  <font color="blue">
+## En el archivo CVector.py se define la clase, funciones y propiedades:
+- ### Funciones:
   * Pol_g(Mag, Dir_g)
   * Azi_g(Mag, Dir_g)
   * Rec(x_i,y_j)
   * Sume_Vect(VectorB) Afecta el vector.
   * Reste_Vect(VectorB) Afecta el vector.
   * Mult_Escalar(ValEscalar) Afecta el vector.
-- ## Propiedades:
+- ### Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
   * DireccionAzimutal_r   ... resultado en radianes
