@@ -12,6 +12,13 @@ En el archivo Vectores.py se tienen las funciones:
 - ProdCruz3D(xa, ya, za, xb, yb, zb)
   
 En el archivo CVector.py se define la clase, funciones y propiedades:
-- Propiedades
--   Pol_g(Mag, Dir_g)
--   
+- Funciones:
+* Pol_g(Mag, Dir_g)
+* Azi_g(Mag, Dir_g)
+* Rec(self, x_i,y_j)
+- ## Propiedades:
+  * magnitud
+  * DireccionPolar_r      ... resultado en radianes
+  * DireccionAzimutal_r   ... resultado en radianes
+  * DireccionPolar_g      ... resultado en grados
+  * DireccionAzimutal_g   ... resultado en grados
