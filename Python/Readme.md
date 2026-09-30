@@ -2,11 +2,15 @@
 Para tener las funciones disponibles, debe copiar como mínimo CVector.py y Vectores.py.
 
 En el archivo Vectores.py se tienen las funciones:
-- Pol(x,y)
-- RecPol(Mag,DirPol_g) donde DirPol_g es el ángulo polar dado en grados con decimales.
-- RecAzi(Mag,DirAzi_g) donde DirAzi_g es el ángulo azimutal dado en grados con decimales.
-- Suma(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B)
-- MulEsc(ValEscalar, Mag_A, DirPol_g_A)
+- Pol(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
+- RecPol(Mag,DirPol_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo polar dado en grados con decimales.
+- RecAzi(Mag,DirAzi_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo azimutal dado en grados con decimales.
+- Suma(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B) Imprime el resultado de la resta de los dos vectores.
+- Suma_v2(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B) Imprime el resultado de restar al VectorA el VectorB.
+- Resta(MagVecA, DirVecA, MagVecB, DirVecB) Imprime el resultado de la resta de los dos vectores.
+- Resta_v2(MagVecA, DirVecA, MagVecB, DirVecB) Imprime el resultado de restar al VectorA el VectorB.
+- MulEsc(ValEscalar, Mag_A, DirPol_g_A) Imprime el resultado multiplicar un Valor Escalar al VectorA. No afecta el VectorA.
+- MulEsc_v2(ValEscalar, Mag_A, DirPol_g_A) Imprime el resultado del VectorA al multiplicarlo por un Valor Escalar. Afecta al VectorA.
 - ProdPunto2D(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B)
 - ProdPunto3D(xa, ya, za, xb, yb, zb)
 - ProdCruz3D(xa, ya, za, xb, yb, zb)
@@ -15,7 +19,10 @@ En el archivo CVector.py se define la clase, funciones y propiedades:
 - ## Funciones:
   * Pol_g(Mag, Dir_g)
   * Azi_g(Mag, Dir_g)
-  * Rec(self, x_i,y_j)
+  * Rec(x_i,y_j)
+  * Sume_Vect(VectorB)
+  * Reste_Vect(VectorB)
+  * Mult_Escalar(ValEscalar)
 - ## Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
