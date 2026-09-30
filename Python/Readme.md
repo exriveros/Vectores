@@ -1,5 +1,5 @@
 # Vectores con OOP utilizando Python
-Para tener las funciones disponibles, debe copiar como mínimo CVector.py y Vectores.py.
+Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vectores3D.py y Vectores.py.
 
 En el archivo Vectores.py se tienen las funciones:
 - Pol(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
