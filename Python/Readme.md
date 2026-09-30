@@ -13,9 +13,9 @@ En el archivo Vectores.py se tienen las funciones:
   
 En el archivo CVector.py se define la clase, funciones y propiedades:
 - ## Funciones:
-* Pol_g(Mag, Dir_g)
-* Azi_g(Mag, Dir_g)
-* Rec(self, x_i,y_j)
+  * Pol_g(Mag, Dir_g)
+  * Azi_g(Mag, Dir_g)
+  * Rec(self, x_i,y_j)
 - ## Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
