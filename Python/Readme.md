@@ -20,9 +20,9 @@ En el archivo CVector.py se define la clase, funciones y propiedades:
   * Pol_g(Mag, Dir_g)
   * Azi_g(Mag, Dir_g)
   * Rec(x_i,y_j)
-  * Sume_Vect(VectorB)
-  * Reste_Vect(VectorB)
-  * Mult_Escalar(ValEscalar)
+  * Sume_Vect(VectorB) Afecta el vector.
+  * Reste_Vect(VectorB) Afecta el vector.
+  * Mult_Escalar(ValEscalar) Afecta el vector.
 - ## Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
