@@ -15,8 +15,8 @@ Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vecto
 - ProdPunto3D(xa, ya, za, xb, yb, zb)
 - ProdCruz3D(xa, ya, za, xb, yb, zb)
 
-[!NOTE]
-  Se escriben el la línea de comandos. Ejemplo: Suma(4, 45, 8, 135) Suma el vector (4;< 45°) con el vector (8;< 135°)
+>[!NOTE]
+  Se escriben en la línea de comandos. Ejemplo: <code style="color : blue">Suma(4, 45, 8, 135)</code> Realiza la Suma del vector (4;< 45°) con el vector (8;< 135°).
 ## En el archivo <code style="color : blue">CVector.py</code> se define la clase, funciones y propiedades:
 - ### Funciones:
   * Pol_g(Mag, Dir_g)
