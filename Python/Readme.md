@@ -17,8 +17,8 @@ En el archivo CVector.py se define la clase, funciones y propiedades:
   * Azi_g(Mag, Dir_g)
   * Rec(self, x_i,y_j)
 - ## Propiedades:
-  * | magnitud | --- |
-  * | DireccionPolar_r |     ... resultado en radianes |
-  * | DireccionAzimutal_r |   ... resultado en radianes |
-  * | DireccionPolar_g |      ... resultado en grados |
-  * | DireccionAzimutal_g |   ... resultado en grados |
+  * magnitud
+  * DireccionPolar_r      ... resultado en radianes
+  * DireccionAzimutal_r   ... resultado en radianes
+  * DireccionPolar_g      ... resultado en grados
+  * DireccionAzimutal_g   ... resultado en grados
