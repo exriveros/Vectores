@@ -1,7 +1,7 @@
 # Vectores con OOP utilizando Python
 Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vectores3D.py y Vectores.py.
 
-El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene las funciones:
+## El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene las siguientes funciones:
 - Pol(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
 - RecPol(Mag,DirPol_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo polar dado en grados con decimales.
 - RecAzi(Mag,DirAzi_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo azimutal dado en grados con decimales.
@@ -14,7 +14,8 @@ El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene la
 - ProdPunto2D(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B)
 - ProdPunto3D(xa, ya, za, xb, yb, zb)
 - ProdCruz3D(xa, ya, za, xb, yb, zb)
-  
+
+  Se escriben el la línea de comandos. Ejemplo: Suma(4, 45, 8, 135) Suma el vector (4;< 45°) con el vector (8;< 135°)
 ## En el archivo <code style="color : blue">CVector.py</code> se define la clase, funciones y propiedades:
 - ### Funciones:
   * Pol_g(Mag, Dir_g)
