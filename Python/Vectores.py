@@ -3,11 +3,16 @@
 #           Fecha: 30/09/2026
 #           Elaboró: Ernesto Riveros Ospina
 #***************************************************************
+
+#----------------------------------------------------------------
+# Carga las librerias OOP de vectores 2D y 3D
 from CVector import CVector
 from CVector3D import CVector3D
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def Pol(x, y):
+    #----------------------------------------------------------------
+    # define la variable como vector 2D
     Vector = CVector()
 
     #----------------------------------------------------------------
@@ -20,6 +25,8 @@ def Pol(x, y):
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def RecPol(mag, DirPol_g):
+    #----------------------------------------------------------------
+    # define la variable como vector 2D
     Vector = CVector()
 
     #----------------------------------------------------------------
@@ -32,6 +39,8 @@ def RecPol(mag, DirPol_g):
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def RecAzi(mag, DirAzi_g):
+    #----------------------------------------------------------------
+    # define la variable como vector 2D
     Vector = CVector()
 
     #----------------------------------------------------------------
@@ -44,6 +53,8 @@ def RecAzi(mag, DirAzi_g):
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def Suma(MagVecA, DirVecA,MagVecB, DirVecB):
+    #----------------------------------------------------------------
+    # define las variables como vectores 2D
     VectorA = CVector()
     VectorB = CVector()
     VectorR = CVector()
@@ -65,6 +76,74 @@ def Suma(MagVecA, DirVecA,MagVecB, DirVecB):
     print("Por Vectorial Azimutal ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionAzimutal_g) + "° )")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def Suma_v2(MagVecA, DirVecA, MagVecB, DirVecB):
+    #----------------------------------------------------------------
+    # define las variables como vectores 2D
+    VectorA = CVector()
+    VectorB = CVector()
+
+    #----------------------------------------------------------------
+    # inicializa los vectores con informacion vectorial polar
+    VectorA.Pol_g(MagVecA,DirVecA)
+    VectorB.Pol_g(MagVecB,DirVecB)
+
+    #----------------------------------------------------------------
+    # le suma al vector A el vector B en la libreria CVector.py
+    VectorA.Sume_Vect(VectorB)
+
+    #----------------------------------------------------------------
+    # presenta los resultados
+    print("Por Proyecciones       ( {:10.4f}".format(VectorA.x) + " ; " + "{:10.4f}".format(VectorA.y) + " )")
+    print("Por Vectorial Polar    ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionPolar_g) + "° )")
+    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionAzimutal_g) + "° )")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def Resta(MagVecA, DirVecA, MagVecB, DirVecB):
+    #----------------------------------------------------------------
+    # define las variables como vectores 2D
+    VectorA = CVector()
+    VectorB = CVector()
+    VectorR = CVector()
+
+    #----------------------------------------------------------------
+    # inicializa los vectores con informacion vectorial polar
+    VectorA.Pol_g(MagVecA,DirVecA)
+    VectorB.Pol_g(MagVecB,DirVecB)
+
+    #----------------------------------------------------------------
+    # le suma al vector A el vector B en la libreria CVector.py
+    VectorR.x = VectorA.x - VectorB.x
+    VectorR.y = VectorA.y - VectorB.y
+
+    #----------------------------------------------------------------
+    # presenta los resultados
+    print("Por Proyecciones       ( {:10.4f}".format(VectorR.x) + " ; " + "{:10.4f}".format(VectorR.y) + " )")
+    print("Por Vectorial Polar    ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionPolar_g) + "° )")
+    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionAzimutal_g) + "° )")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def Resta_v2(MagVecA, DirVecA, MagVecB, DirVecB):
+    #----------------------------------------------------------------
+    # define las variables como vectores 2D
+    VectorA = CVector()
+    VectorB = CVector()
+
+    #----------------------------------------------------------------
+    # inicializa los vectores con informacion vectorial polar
+    VectorA.Pol_g(MagVecA,DirVecA)
+    VectorB.Pol_g(MagVecB,DirVecB)
+
+    #----------------------------------------------------------------
+    # le suma al vector A el vector B en la libreria CVector.py
+    VectorA.Reste_Vect(VectorB)
+
+    #----------------------------------------------------------------
+    # presenta los resultados
+    print("Por Proyecciones       ( {:10.4f}".format(VectorA.x) + " ; " + "{:10.4f}".format(VectorA.y) + " )")
+    print("Por Vectorial Polar    ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionPolar_g) + "° )")
+    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionAzimutal_g) + "° )")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def MulEsc(ValEscalar, MagVecA, DirVecA):
     VectorA = CVector()
     VectorR = CVector()
@@ -83,6 +162,24 @@ def MulEsc(ValEscalar, MagVecA, DirVecA):
     print("Por Proyecciones       ( {:10.4f}".format(VectorR.x) + " ; " + "{:10.4f}".format(VectorR.y) + " )")
     print("Por Vectorial Polar    ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionPolar_g) + "° )")
     print("Por Vectorial Azimutal ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionAzimutal_g) + "° )")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def MulEsc_v2(ValEscalar, MagVecA, DirVecA):
+    VectorA = CVector()
+
+    #----------------------------------------------------------------
+    # inicializa los vectores con informacion vectorial polar
+    VectorA.Pol_g(MagVecA,DirVecA)
+
+    #----------------------------------------------------------------
+    # multiplica un valor escalar por el vector
+    VectorA.Mult_Escalar(ValEscalar)
+
+    #----------------------------------------------------------------
+    # presenta los resultados
+    print("Por Proyecciones       ( {:10.4f}".format(VectorA.x) + " ; " + "{:10.4f}".format(VectorA.y) + " )")
+    print("Por Vectorial Polar    ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionPolar_g) + "° )")
+    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionAzimutal_g) + "° )")
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
