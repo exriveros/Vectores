@@ -2,7 +2,8 @@
 Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vectores3D.py y Vectores.py.
 
 ## El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene las siguientes funciones:
-- Pol(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
+- Polar(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
+- Azimutal(x,y) imprime el resultado un vector azimutal con magnitud y dirección usando las proyecciones.
 - RecPol(Mag,DirPol_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo polar dado en grados con decimales.
 - RecAzi(Mag,DirAzi_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo azimutal dado en grados con decimales.
 - Suma(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B) Imprime el resultado de la resta de los dos vectores.
