@@ -20,12 +20,15 @@ Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vecto
   Se escriben en la línea de comandos. Ejemplo: <code style="color : blue">Suma(4, 45, 8, 135)</code> Realiza la Suma del vector (4;< 45°) con el vector (8;< 135°).
 ## En el archivo <code style="color : blue">CVector.py</code> se define la clase, funciones y propiedades:
 - ### Funciones:
-  * Pol_g(Mag, Dir_g)
-  * Azi_g(Mag, Dir_g)
-  * Rec(x_i,y_j)
-  * Sume_Vect(VectorB) Afecta el vector.
-  * Reste_Vect(VectorB) Afecta el vector.
-  * Mult_Escalar(ValEscalar) Afecta el vector.
+  * \+
+  * \-
+  * =
+  * Pol_g(Mag, Dir_g) Inicializa el vector con dirección Polar con ángulo grados.
+  * Azi_g(Mag, Dir_g) Inicializa el vector con dirección Azimutal con ángulo en grados.
+  * Rec(x_i,y_j) Inicializa el vector con coordenadas o proyecciones.
+  * Sume_Vect(VectorB) Afecta el vector sumando el VectorB.
+  * Reste_Vect(VectorB) Afecta el vector sumando el VectorB.
+  * Mult_Escalar(ValEscalar) Afecta el vector multiplicándolo por el valor escalar.
 - ### Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
