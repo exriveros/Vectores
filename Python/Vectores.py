@@ -9,50 +9,49 @@
 from CVector import CVector
 from CVector3D import CVector3D
 
+def SumeOp(ax, ay, bx, by):
+    VectA = CVector()
+    VectB = CVector()
+    VectorR = CVector()
+    
+    VectA.x = ax
+    VectA.y = ay
+    
+    VectB.x = bx
+    VectB.y = by
+
+    VectorR = VectA + VectB
+    
+    print("Por Proyecciones       ( {:10.4f}".format(VectorR.x) + " ; " + "{:10.4f}".format(VectorR.y) + " )")
+    print("Por Vectorial Polar    ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionPolar_g) + "° )")
+    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionAzimutal_g) + "° )")
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def Pol(x, y):
-    #----------------------------------------------------------------
-    # define la variable como vector 2D
-    Vector = CVector()
-
-    #----------------------------------------------------------------
-    # inicializa el vector con informacion vectorial polar
-    Vector.Rec(x,y)
-
-    #----------------------------------------------------------------
-    # presenta los resultados
-    print("( {:8.2f}".format(Vector.magnitud) + " ;< " + "{:8.4f}".format(Vector.DireccionPolar_g) + "° )")
+def Polar(x, y):
+    Vector = CVector()     # define la variable como vector 2D
+    Vector.Rec(x,y)        # inicializa el vector con informacion vectorial polar
+    print("( {:8.2f}".format(Vector.magnitud) + " ;< " + "{:8.4f}".format(Vector.Direccion_g) + "° )") # presenta los resultados
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def RecPol(mag, DirPol_g):
-    #----------------------------------------------------------------
-    # define la variable como vector 2D
-    Vector = CVector()
+def Azimutal(x, y):
+    Vector = CVector()     # define la variable como vector 2D
+    Vector.Rec(x,y)        # inicializa el vector con informacion vectorial polar    
+    print("( {:8.2f}".format(Vector.magnitud) + " ;< " + "{:8.4f}".format(Vector.DireccionPolar_g) + "° )") # presenta los resultados
 
-    #----------------------------------------------------------------
-    # inicializa el vector con informacion vectorial polar
-    Vector.Pol_g(mag,DirPol_g)
-
-    #----------------------------------------------------------------
-    # presenta los resultados
-    print("( {:11.4f}".format(Vector.x) + " ;< " + "{:11.4f}".format(Vector.y) + " )")
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def RecAngPol(mag, DirPol_g):
+    Vector = CVector()            # define la variable como vector 2D
+    Vector.Pol_g(mag,DirPol_g)    # inicializa el vector con informacion vectorial polar
+    print("( {:11.4f}".format(Vector.x) + "; " + "{:11.4f}".format(Vector.y) + " )") # presenta los resultados
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 def RecAzi(mag, DirAzi_g):
-    #----------------------------------------------------------------
-    # define la variable como vector 2D
-    Vector = CVector()
-
-    #----------------------------------------------------------------
-    # inicializa el vector con informacion vectorial azimutal
-    Vector.Azi_g(mag,DirAzi_g)
-
-    #----------------------------------------------------------------
-    # presenta los resultados
-    print("( {:11.4f}".format(Vector.x) + " ;< " + "{:11.4f}".format(Vector.y) + " )")
+    Vector = CVector()          # define la variable como vector 2D
+    Vector.Azi_g(mag,DirAzi_g)  # inicializa el vector con informacion vectorial azimutal
+    print("( {:11.4f}".format(Vector.x) + " ;< " + "{:11.4f}".format(Vector.y) + " )") # presenta los resultados
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def Suma(MagVecA, DirVecA,MagVecB, DirVecB):
+def Suma(MagVecA, DirVecA, MagVecB, DirVecB):
     #----------------------------------------------------------------
     # define las variables como vectores 2D
     VectorA = CVector()
@@ -88,8 +87,8 @@ def Suma_v2(MagVecA, DirVecA, MagVecB, DirVecB):
     VectorB.Pol_g(MagVecB,DirVecB)
 
     #----------------------------------------------------------------
-    # le suma al vector A el vector B en la libreria CVector.py
-    VectorA.Sume_Vect(VectorB)
+    # suma al vector A el vector B con el operador __sum__
+    VectorA += VectorB
 
     #----------------------------------------------------------------
     # presenta los resultados
