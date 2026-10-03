@@ -158,57 +158,77 @@ def MulEsc(ValEscalar, MagVecA, DirVecA):
 
     #----------------------------------------------------------------
     # presenta los resultados
-    print("Por Proyecciones       ( {:10.4f}".format(VectorR.x) + " ; " + "{:10.4f}".format(VectorR.y) + " )")
+    print("Por Proyecciones       ( {:10.4f}".format(VectorR.x) + " ; " +"{:10.4f}".format(VectorR.y) + " )")
     print("Por Vectorial Polar    ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionPolar_g) + "° )")
     print("Por Vectorial Azimutal ( {:8.2f}".format(VectorR.magnitud) + " ;< " + "{:11.4f}".format(VectorR.DireccionAzimutal_g) + "° )")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def MulEsc_v2(ValEscalar, MagVecA, DirVecA):
-    VectorA = CVector()
-
+def MulEsc_v(ValEscalar, Vector2D):
     #----------------------------------------------------------------
-    # inicializa los vectores con informacion vectorial polar
-    VectorA.Pol_g(MagVecA,DirVecA)
-
-    #----------------------------------------------------------------
-    # multiplica un valor escalar por el vector
-    VectorA.Mult_Escalar(ValEscalar)
-
-    #----------------------------------------------------------------
-    # presenta los resultados
-    print("Por Proyecciones       ( {:10.4f}".format(VectorA.x) + " ; " + "{:10.4f}".format(VectorA.y) + " )")
-    print("Por Vectorial Polar    ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionPolar_g) + "° )")
-    print("Por Vectorial Azimutal ( {:8.2f}".format(VectorA.magnitud) + " ;< " + "{:11.4f}".format(VectorA.DireccionAzimutal_g) + "° )")
-
+    # define el vector R y lo inicializa multiplicando por el escalar 
+    R = CVector(ValEscalar * Vector2D.x, ValEscalar * Vector2D.y)
+    
+    return R
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def ProdPunto2D(MagVecA, DirVecA,MagVecB, DirVecB):
-    VectorA = CVector()
-    VectorB = CVector()
+def DivEsc_v(ValEscalar, Vector2D):
+    #----------------------------------------------------------------
+    # define el vector R y lo inicializa multiplicando por el escalar 
+    R = CVector(Vector2D.x / ValEscalar, Vector2D.y / ValEscalar)
+    
+    return R
+    
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def VerVector(Vector2D, i=None): #imprime el vector usando diferentes referencias
+    if i is None:
+        print("0). Por Vectores Unitarios   {:10.4f}".format(Vector2D.x) + " i + " + "{:10.4f}".format(Vector2D.y) + " j ")
+        print("1). Por Proyecciones       ( {:10.4f}".format(Vector2D.x) + " ; " + "{:10.4f}".format(Vector2D.y) + " )")
+        print("2). Por Vectorial Polar    ( {:8.2f}".format(Vector2D.magnitud) + " ;< " + "{:11.4f}".format(Vector2D.DireccionPolar_g) + "° )")
+        print("3). Por Vectorial Azimutal ( {:8.2f}".format(Vector2D.magnitud) + " ;< " + "{:11.4f}".format(Vector2D.DireccionAzimutal_g) + "° )")
+    elif i == 0:
+        print("Por Vectores Unitarios   {:10.4f}".format(Vector2D.x) + " i + " + "{:10.4f}".format(Vector2D.y) + " j ")
+    elif i == 1:
+        print("Por Proyecciones       ( {:10.4f}".format(Vector2D.x) + " ; " + "{:10.4f}".format(Vector2D.y) + " )")
+    elif i == 2:
+        print("Por Vectorial Polar    ( {:8.2f}".format(Vector2D.magnitud) + " ;< " + "{:11.4f}".format(Vector2D.DireccionPolar_g) + "° )")
+    elif i == 3:
+        print("Por Vectorial Azimutal ( {:8.2f}".format(Vector2D.magnitud) + " ;< " + "{:11.4f}".format(Vector2D.DireccionAzimutal_g) + "° )")
+    else:
+        print("Ejemplo: VerVector(CVector) o VerVector(CVector, n) {n | n >= 0, n <= 3)")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def ProdPunto2D(VectorA_2D, VectorB_2D):
+    A=VectorA_2D
+    B=VectorB_2D
 
     #----------------------------------------------------------------
-    # inicializa los vectores con informacion vectorial polar
-    VectorA.Pol_g(MagVecA,DirVecA)
-    VectorB.Pol_g(MagVecB,DirVecB)
+    # calcula el producto punto de los vectores, con resultado escalar 
+    R = (A.x * B.x) + (A.y * B.y)
 
-    R = VectorA.x*VectorB.x + VectorA.y*VectorB.y
-
-    print("Prod Punto 2D{:8.2f}".format(R))
+    return R
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def ProdPunto3D(xa, ya, za, xb, yb, zb):
+def ProdPunto3D(VectorA_3D,VectorB_3D):
+    A=VectorA_3D
+    B=VectorB_3D
+    
+    #----------------------------------------------------------------
+    # calcula el producto punto de los vectores, con resultado escalar 
+    R = (A.x * B.x) + (A.y * B.y) + (A.z * B.z) 
 
-    R = (xa * xb) + (ya * yb) + (za * zb)
-
-    print("Prod Punto 3D{:8.2f}".format(R))
+    return R
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def ProdCruz3D(xa, ya, za, xb, yb, zb):
+def ProdCruz3D(VectorA_3D,VectorB_3D):
+    A=VectorA_3D
+    B=VectorB_3D
+    R=CVector3D()
+    #----------------------------------------------------------------
+    # calcula el producto cruz de los vectores, con resultado vector 
+    x = (+1) * (A.y * B.z - A.z * B.y)
+    y = (-1) * (A.x * B.z - A.z * B.x)
+    z = (+1) * (A.x * B.y - A.y * B.x)
 
-    x = (+1) * (ya * zb - yb * za)
-    y = (-1) * (xa * zb - xb * za)
-    z = (+1) * (xa * yb - xb * ya)
-
-    print("Prod Cruz 3D{:8.2f}".format(x) + "i + {:8.2f}".format(y) + "j + {:8.2f}".format(z) + "k")
+    return R
     
     

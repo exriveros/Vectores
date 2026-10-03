@@ -22,6 +22,12 @@ class CVector:
         nvo.y = self.y + other.y
         return nvo
 
+    def __sub__(self, other):
+        nvo = CVector()
+        nvo.x = self.x - other.x
+        nvo.y = self.y - other.y
+        return nvo
+
     def __eq__(self, other):
         nvo = CVector
         nvo.x = other.x
