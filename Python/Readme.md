@@ -1,23 +1,27 @@
 # Vectores con OOP utilizando Python
 Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vectores3D.py y Vectores.py.
 
-## El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene las siguientes funciones:
-- Polar(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
-- Azimutal(x,y) imprime el resultado un vector azimutal con magnitud y dirección usando las proyecciones.
-- RecPol(Mag,DirPol_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo polar dado en grados con decimales.
-- RecAzi(Mag,DirAzi_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo azimutal dado en grados con decimales.
-- Suma(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B) Imprime el resultado de la resta de los dos vectores.
-- Suma_v2(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B) Imprime el resultado de restar al VectorA el VectorB.
-- Resta(MagVecA, DirVecA, MagVecB, DirVecB) Imprime el resultado de la resta de los dos vectores.
-- Resta_v2(MagVecA, DirVecA, MagVecB, DirVecB) Imprime el resultado de restar al VectorA el VectorB.
-- MulEsc(ValEscalar, Mag_A, DirPol_g_A) Imprime el resultado multiplicar un Valor Escalar al VectorA. No afecta el VectorA.
-- MulEsc_v2(ValEscalar, Mag_A, DirPol_g_A) Imprime el resultado del VectorA al multiplicarlo por un Valor Escalar. Afecta al VectorA.
-- ProdPunto2D(Mag_A, DirPol_g_A, Mag_B, DirPol_g_B)
-- ProdPunto3D(xa, ya, za, xb, yb, zb)
-- ProdCruz3D(xa, ya, za, xb, yb, zb)
-
+## El archivo <code style="color : blue"><ins>**Vectores.py**</ins></code> tiene las siguientes funciones de:
+- ### Presentación
+  * Polar(x,y) imprime el resultado un vector polar con magnitud y dirección usando las proyecciones.
+  * Azimutal(x,y) imprime el resultado un vector azimutal con magnitud y dirección usando las proyecciones.
+  * Rectangular(Mag,DirPol_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo polar dado en grados con decimales.
+  * Rectangular_Azi(Mag,DirAzi_g) Imprime el resultado de las proyecciones de un vector donde DirPol_g es el ángulo azimutal dado en grados con decimales.
+  * VerVector(Vector, opcional presentación entero)
+- ### Operacionales: 
+  * MulEsc(ValEscalar, Mag_A, DirPol_g_A) Regresa el vector resultante.
+  * DivEsc(ValEscalar, Mag_A, DirPol_g_A) Regresa el vector resultante.
+  * ProdPunto(Vector_A, Vector_B) Regresa la magnitud resultante.
+  * ProdCruz(Vector_A, Vector_B) Regresa el vector resultante.
+  * A + B o A + B + C: Suma Vectores y regresa el vector resultante.
+  * A - B o A - B - C: Resta Vectores y regresa el vector resultante.
 >[!NOTE]
-  Se escriben en la línea de comandos. Ejemplo: <code style="color : blue">Suma(4, 45, 8, 135)</code> Realiza la Suma del vector (4;< 45°) con el vector (8;< 135°).
+>Para crear un vector con proyecciones <code style="color : blue">a = CVector(3,4)</code>. Con Magnitud y Dirección en grados polar <code style="color: bue">r = CVector(); r.Pol_g(5,53.13010235)</code>.
+>
+>Se escriben en la línea de comandos. Ejemplo: <code style="color : blue">r = c - (a + MulEsc(3,b))</code> Operación de: restarle a C, la suma del vector A y
+>tres veces el vector B. Para ver el vector resultante r <code style="color : blue">VerVector(r) o VerVector(r,0)</code>
+el vector A y 3 veces el vector B.
+
 ## En el archivo <code style="color : blue">CVector.py</code> se define la clase, funciones y propiedades:
 - ### Funciones:
   * \+
