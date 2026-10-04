@@ -34,31 +34,21 @@ class CVector:
         nvo.y = other.y
         return nvo
 
-    def Pol_g(self, Mag, Dir_g):
-        Dir = Dir_g * math.pi / 180.0
-        self.x=Mag*math.cos(Dir)
-        self.y=Mag*math.sin(Dir)
-
-    def Azi_g(self, Mag, Dir_g):
+    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    # Funciones que inicializan el vector
+    def Azi_g(self, Mag, Dir_g): #Inicializa con datos de magnitud y direccion Azimutal.
         Dir = Dir_g * math.pi / 180.0
         self.x = Mag * math.sin(Dir)
         self.y = Mag * math.cos(Dir)
 
-    def Rec(self, x_i,y_j):
+    def Pol_g(self, Mag, Dir_g): #Inicializa con datos de magnitud y direccion Polar.
+        Dir = Dir_g * math.pi / 180.0
+        self.x=Mag*math.cos(Dir)
+        self.y=Mag*math.sin(Dir)
+
+    def Rec(self, x_i,y_j): #Inicializa con datos de proyecciones
         self.x=x_i
         self.y=y_j
-
-    def Sume_Vect(self, VecB):
-        self.x = self.x + VecB.x
-        self.y = self.y + VecB.y
-
-    def Reste_Vect(self, VecB):
-        self.x = self.x - VecB.x
-        self.y = self.y - VecB.y
-
-    def Mult_Escalar(self, ValEscalar):
-        self.x *= ValEscalar
-        self.y *= ValEscalar
 
     @property
     def magnitud(self):
