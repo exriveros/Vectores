@@ -25,11 +25,18 @@ class CVector3D:
         nvo.z = self.z + other.z
         return nvo
 
-    def __isub__(self, other):
+    def __sub__(self, other):
         nvo = CVector3D()
         nvo.x = self.x - other.x
         nvo.y = self.y - other.y
         nvo.z = self.z - other.z
+        return nvo
+
+    def __eq__(self, other):
+        nvo = CVector3D()
+        nvo.x = other.x
+        nvo.y = other.y
+        nvo.z = other.z
         return nvo
 
     def Rec(self, x_i, y_j, z_k):
@@ -51,7 +58,7 @@ class CVector3D:
         self.z = MagXYZ * math.cos(AngRadZ)
 
     @property
-    def magnitud(self):
+    def magnitudxyz(self):
         return math.sqrt( math.pow(self.x,2.0) + math.pow(self.y,2.0) + math.pow(self.z,2.0))
 
     @property
@@ -63,17 +70,17 @@ class CVector3D:
         if self.y>=0:
             return math.acos(self.x/self.magnitudxy)
         else:
-            return 2*math.pi - math.acos(self.x/self.magnitud)
+            return 2*math.pi - math.acos(self.x/self.magnitudxy)
 
     @property
     def DireccionAzimutal_r(self):
         if(self.x>=0):
             return math.acos(self.y/self.magnitudxy)
         else:
-            return 2*math.pi - math.acos(self.y/self.magnitud)
+            return 2*math.pi - math.acos(self.y/self.magnitudxy)
     @property
     def DireccionZ_r(self):
-        return math.acos(self.z/self.magnitud)
+        return math.acos(self.z/self.magnitudxyz)
 
     @property
     def DireccionPolar_g(self):
