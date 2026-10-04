@@ -27,12 +27,11 @@ el vector A y 3 veces el vector B.
   * \+
   * \-
   * =
-  * Pol_g(Mag, Dir_g) Inicializa el vector con dirección Polar con ángulo grados.
+  * +=
+  * -=
   * Azi_g(Mag, Dir_g) Inicializa el vector con dirección Azimutal con ángulo en grados.
+  * Pol_g(Mag, Dir_g) Inicializa el vector con dirección Polar con ángulo grados.
   * Rec(x_i,y_j) Inicializa el vector con coordenadas o proyecciones.
-  * Sume_Vect(VectorB) Afecta el vector sumando el VectorB.
-  * Reste_Vect(VectorB) Afecta el vector sumando el VectorB.
-  * Mult_Escalar(ValEscalar) Afecta el vector multiplicándolo por el valor escalar.
 - ### Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
