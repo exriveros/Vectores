@@ -23,7 +23,7 @@ Para tener las funciones disponibles, debe copiar como mínimo CVector.py, Vecto
 el vector A y 3 veces el vector B.
 
 ## En el archivo <code style="color : blue">CVector.py</code> se define la clase, funciones y propiedades:
-- ### Funciones:
+- ### Funciones Clase CVector():
   * \+
   * \-
   * =
@@ -31,10 +31,30 @@ el vector A y 3 veces el vector B.
   * -=
   * Azi_g(Mag, Dir_g) Inicializa el vector con dirección Azimutal con ángulo en grados.
   * Pol_g(Mag, Dir_g) Inicializa el vector con dirección Polar con ángulo grados.
-  * Rec(x_i,y_j) Inicializa el vector con coordenadas o proyecciones.
+  * Rec(x_i,y_j) Inicializa el vector con coordenadas o proyecciones. También CVector(x, y).
 - ### Propiedades:
   * magnitud
   * DireccionPolar_r      ... resultado en radianes
   * DireccionAzimutal_r   ... resultado en radianes
   * DireccionPolar_g      ... resultado en grados
   * DireccionAzimutal_g   ... resultado en grados
+  * CosenosDirectores     ... resultado CVector()
+- ### Funciones Clase CVector3D():
+  * \+
+  * \-
+  * =
+  * +=
+  * -=
+  * Cilindricas(Mag, DirPolar_g, z) Inicializa el vector con dirección Polar con ángulo en grados y elevación.
+  * Esfericas(Mag, DirPolar_g, AngVertical_g) Inicializa el vector con dirección Polar con ángulo grados y ángulo vertical.
+  * Rec(x, y, z) Inicializa el vecor con las proyecciones. También CVector3D(x, y, z).
+- ### Propiedades:
+  * magnitudxy
+  * magnitudxyz
+  * DireccionPolar_r      ... resultado en radianes
+  * DireccionAzimutal_r   ... resultado en radianes
+  * DireccionZ_r          ... resultado en radianes
+  * DireccionPolar_g      ... resultado en grados
+  * DireccionAzimutal_g   ... resultado en grados
+  * DireccionZ_g          ... resultado en grados
+  * CosenosDirectores     ... resultado CVector3D()
