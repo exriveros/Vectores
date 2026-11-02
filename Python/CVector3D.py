@@ -25,6 +25,9 @@ class CVector3D:
         nvo.z = self.z + other.z
         return nvo
 
+    def __neg__(self):
+        return CVector3D(-self.x,-self.y,-self.z)
+
     def __sub__(self, other):
         nvo = CVector3D()
         nvo.x = self.x - other.x
@@ -39,11 +42,6 @@ class CVector3D:
         nvo.z = other.z
         return nvo
 
-    def Rec(self, x_i, y_j, z_k):
-        self.x=x_i
-        self.y=y_j
-        self.z=z_k
-
     def Cilindricas(self, MagXY, AngPolar, z_k):
         AngRad = AngPolar * math.pi / 180.0
         self.x = MagXY * math.cos(AngRad)
@@ -57,6 +55,55 @@ class CVector3D:
         self.y = MagXYZ * math.sin(AngRadZ) * math.sin(AngRadXY)
         self.z = MagXYZ * math.cos(AngRadZ)
 
+    def Rec(self, x_i, y_j, z_k):
+        self.x=x_i
+        self.y=y_j
+        self.z=z_k
+
+    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    # Funciones que inicializan el vector
+    def ProdPuntoVXY(self, VectSigue):
+        R = 0
+        if isinstance(VectSigue,CVector3D):
+            R=VectSigue.x * Self.x + VectSigue.y * Self.y
+        return R
+
+    def ProdPuntoVXYZ(self, VectSigue):
+        R = 0
+        if isinstance(VectSigue,CVector3D):
+            R=VectSigue.x * Self.x + VectSigue.y * Self.y + VectSigue.z * Self.z
+        return R
+                
+    def Deflexion_RadXY(self, VectSigue):
+        R = 0
+        if isinstance(VectSigue,CVector3D):
+            PPto=self.ProdPuntoVXY(VectSigue)
+            S=PPto / (self.magnitud * VectSigue.magnitud)
+            if S>1.0:
+                S=1.0
+            elif S<-1.0:
+                S=-1.0
+            #R=math.acos(PPto / (self.magnitud * VectSigue.magnitud))
+            R=math.acos(S)
+        return round(R,18)
+
+                
+    def Deflexion_RadXYZ(self, VectSigue):
+        R = 0
+        if isinstance(VectSigue,CVector3D):
+            PPto=self.ProdPuntoVXYZ(VectSigue)
+            S=PPto / (self.magnitud * VectSigue.magnitud)
+            if S>1.0:
+                S=1.0
+            elif S<-1.0:
+                S=-1.0
+            #R=math.acos(PPto / (self.magnitud * VectSigue.magnitud))
+            R=math.acos(S)
+        return round(R,18)
+
+
+    #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    # Propiedades de los vectores 3D
     @property
     def magnitudxyz(self):
         return math.sqrt( math.pow(self.x,2.0) + math.pow(self.y,2.0) + math.pow(self.z,2.0))
@@ -67,20 +114,30 @@ class CVector3D:
 
     @property
     def DireccionPolar_r(self):
-        if self.y>=0:
-            return math.acos(self.x/self.magnitudxy)
+        if self.magnitudxy != 0:
+            if self.y >= 0:
+                return math.acos(self.x/self.magnitudxy)
+            else:
+                return 2*math.pi - math.acos(self.x/self.magnitudxy)
         else:
-            return 2*math.pi - math.acos(self.x/self.magnitudxy)
-
+            return 0
+        
     @property
     def DireccionAzimutal_r(self):
-        if(self.x>=0):
-            return math.acos(self.y/self.magnitudxy)
+        if self.magnitudxy != 0:
+            if(self.x>=0):
+                return math.acos(self.y/self.magnitudxy)
+            else:
+                return 2*math.pi - math.acos(self.y/self.magnitudxy)
         else:
-            return 2*math.pi - math.acos(self.y/self.magnitudxy)
+            return 0
+    
     @property
     def DireccionZ_r(self):
-        return math.acos(self.z/self.magnitudxyz)
+        if(self.magnitudxyz != 0):
+            return math.acos(self.z / self.magnitudxyz)
+        else:
+            return 0
 
     @property
     def DireccionPolar_g(self):
@@ -93,5 +150,18 @@ class CVector3D:
     @property
     def DireccionZ_g(self):
         return self.DireccionZ_r * 180.0 / math.pi
+
+    @property
+    def CosenosDirectores(self):
+        R=CVector3D()
+        if  self.magnitudxyz != 0:
+            R.x = self.x / self.magnitudxyz
+            R.y = self.y / self.magnitudxyz
+            R.z = self.z / self.magnitudxyz
+        else:
+            R.x = 0
+            R.y = 0
+            R.z = 0
+        return R
 
 

@@ -4,6 +4,111 @@
 #           Elaboró: Ernesto Riveros Ospina
 #***************************************************************
 
+#EJEMPLOS:
+# Crea Vectores 2D y les asigna proyecciones CVector(x,y):
+#   a=CVector(4,1); b=CVector(4,-3); c=CVector(-3,1)
+
+# Crea Vectores 2D y les asigna valores:
+#   d=CVector(); d.Pol_g(4,78)              Expresión polar: magnitud 4 angulo polar 78°
+#   d=CVector(); d.Azi_g(4,12)              Expresión azimutal: magnitud 4 angulo azimutal 12°
+
+# Crea Vectores 3D y les asigna valores:
+#   g=CVector3D(4, 3, 8)                    Proyecciones CVector3D(x,y,z)
+#   g=CVector3D(); g.Cilindricas(4, 30, 2)  Proyecciones CVector3D (MagXY, AngPolar, z)
+#   h=CVector3D(); h.Esfericas(4, 30, 62)   Proyecciones CVector3D (MagXY, AngPolar, AngZ)
+
+# Genera una lista de vectores llamada Lv
+#   Lv = [a,b,c,d]
+
+# Representación gráfica de Vectores:
+#   PloteaListVect(Lv)                      Presenta todos los vectores en el origen
+#   PloetaSumListVect(Lv)                   Presenta la suma de los vectores en el orden de la lista
+#   PloteaSumVec(True,a,b,c)                Presenta graficamente las combinaciones de sumar a, b y c    (a+b+c; a+c+b; b+a+c; b+c+a; c+a+b; c+b+c)
+#   PloteaSumVec(True,a,b)                  Presenta graficamente las combinaciones de sumar a y b       (a+b; b+a)
+#   PloteaSumVec(False,a,b,c)               Presenta graficamente la suma a + b + c.    Usa el orden de entrada
+#   PloteaSumVec(False,a,b)                 Presenta graficamente la suma a + b.        Usa el orden de entrada
+#   PloteaSumVec(False,a,MulEsc(-1,b))      Presenta graficamente la suma a - b.        Usa el orden de entrada
+
+# Presenta el vector 2D escrito:
+#   VerVector(a)                            Presenta todas las expresiones del vector
+#   VerVector(a,0)                          Muestra el vector usando vectores unitarios
+#   VerVector(a,1)                          Muestra el vector usando proyecciones
+#   VerVector(a,2)                          Muestra el vector usando expresión polar    (mag;<Dir Pol)
+#   VerVector(a,3)                          Muestra el vector usando expresión azimutal (mag;<Dir Azi)
+
+# Presenta el vector 2D escrito:
+#   VerVector(a)                            Presenta todas las expresiones del vector
+#   VerVector(a,0)                          Muestra el vector usando vectores unitarios
+#   VerVector(a,1)                          Muestra el vector usando proyecciones
+#   VerVector(a,2)                          Muestra el vector usando expresión polar    (mag;<Dir Pol)
+#   VerVector(a,3)                          Muestra el vector usando expresión azimutal (mag;<Dir Azi)
+
+# Presenta el vector 2D escrito:
+#   VerVector(g)                            Presenta todas las expresiones del vector 3D
+#   VerVector(g,0)                          Muestra el vector usando vectores unitarios
+#   VerVector(g,1)                          Muestra el vector usando proyecciones
+#   VerVector(g,2)                          Muestra el vector usando expresión cilíndricas polar    (mag;< Dir Pol; z)
+#   VerVector(g,3)                          Muestra el vector usando expresión cilindricas azimutal (mag;< Dir Azi; z)
+#   VerVector(g,4)                          Muestra el vector usando expresión esférica (mag;< Dir xyz; Dir z)
+
+# Expresión de ángulo
+#   Gms(a.DireccionPolar_g)                 Presenta la direccion Polar en grados usando grados, minutos y segundos.
+#   Gms(a.DireccionAzimutal_g)              Presenta la direccion Azimutal en grados usando grados, minutos y segundos.
+
+# Operaciones Vectoriales
+#   f = MulEsc(2,a)                         Multiplicar el vector a por el escalar 2
+#   g = DivEsc(2,a)                         Divide el vector a por el escalar 2
+#   e = a - b - c                           Le restan al vector a los vectores b y c
+#   e = MulEsc(-1,a+b+c+d)                  Equivale a decir e = -a-b-c
+#   e = ProdPunto(a,b)                      Calcula el producto punto
+#   m = ProdCruz(g,h)                       Calcula el vector resultante del producto cruz
+
+# Operaciones con Vectores 2D:
+#   a.Azi_g(mag, dirAzi_g)                  Asigna valores al vector usando coordenadas azimutales
+#   a.Pol_g(mag, dirPol_g)                  Asigna valores al vector usando coordenadas polares
+#   a.Rec(magx,magy)                        Asigna valores al vector usando proyecciones (x,y)
+#   a.magnitud                              Regresa la magnitud del vector
+#   a.x                                     Regresa la proyeccion en x
+#   a.y                                     Regresa la proyeccion en y
+#   a.DireccionAzimutal_g                   Regresa la direccion azimutal en grados
+#   a.DireccionAzimutal_r                   Regresa la direccion azimutal en radianes
+#   a.DireccionPolar_g                      Regresa la direccion polar en grados
+#   a.DireccionPolar_r                      Regresa la direccion polar en radianes
+#   a.ProdPuntoV(b)                         Regresa el producto punto con el vector b
+#   a.Deflexion_Grad(b)                     Regresa el angulo de deflexión entre el vector a y el vector b en grados
+#   a.Deflexion_Rad(b)                      Regresa el angulo de deflexión entre el vector a y el vector b en radianes
+#   a.SentidoDeflex(b)                      Regresa el sentido de deflexion (izq = 1; der = -1; no hay = 0)
+#   j = a.CosenosDirectores                 Regresa un vector con los cosenos directores (usar VerVector(j) para visualizar resultados)
+
+# Operaciones con Vectores 3D:
+#   g.Cilindricas(4,30,2)                   Asigna valores al vector usando (magXY, AngPolarXY, ElevacionZ)
+#   g.Esfericas(4,30,60)                    Asigna valores al vector usando (magXY, AngPolarXY, AnguloZ)
+#   g.Rec(3,2,4)                            Asigna valores al vector usando proyecciones (MagX,MagY,MagZ)
+#   g.magnitudxy                            Regresa la magnitud del vector en el plano xy 
+#   g.magnitudxyz                           Regresa la magnitud del vector sistema esférico o xyz
+#   g.x                                     Regresa la proyeccion en x
+#   g.y                                     Regresa la proyeccion en y
+#   g.z                                     Regresa la proyeccion en y
+#   g.DireccionAzimutal_g                   Regresa la direccion azimutal en grados
+#   g.DireccionAzimutal_r                   Regresa la direccion azimutal en radianes
+#   g.DireccionPolar_g                      Regresa la direccion polar en grados
+#   g.DireccionPolar_r                      Regresa la direccion polar en radianes
+#   g.DireccionZ_g                          Regresa el angulo con Z en grados
+#   g.DireccionZ_r                          Regresa el angulo con Z en radianes
+#   g.ProdPuntoV(b)                         Regresa el producto punto con el vector b
+#   m = g.CosenosDirectores                 Regresa un vector con los cosenos directores (usar VerVector(j) para visualizar resultados)
+
+#**********************************************************************************************************************************
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#        CARGA LAS LIBRERÍAS A UTILIZAR
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+import math
+import matplotlib.pyplot as plt
 #----------------------------------------------------------------
 # Carga las librerias OOP de vectores 2D y 3D
 from CVector import CVector
@@ -46,7 +151,7 @@ def MulEsc(ValEscalar, Vector):
         R = CVector(ValEscalar * Vector.x, ValEscalar * Vector.y)
         return R
     elif isinstance(Vector,CVector3D):
-        R = CVector3D(ValEscalar * Vector.x, ValEscalar * Vector.y, ValEscalar * Vector.z)
+        R = CVector3D(round(ValEscalar * Vector.x, 13), round(ValEscalar * Vector.y, 13), round(ValEscalar * Vector.z, 13))
         return R
     else:
         return 0
@@ -59,7 +164,7 @@ def DivEsc(ValEscalar, Vector):
         R = CVector(Vector.x / ValEscalar, Vector.y / ValEscalar)
         return R
     elif isinstance(Vector,CVector3D):
-        R = CVector3D(Vector.x / ValEscalar, Vector.y / ValEscalar, Vector.z / ValEscalar)
+        R = CVector3D(round(Vector.x / ValEscalar, 13), round(Vector.y / ValEscalar, 13), round(Vector.z / ValEscalar, 13))
         return R
     else:
         return 0
@@ -78,7 +183,7 @@ def ProdPunto(VectorA, VectorB):
     elif (isinstance(VectorA,CVector) and isinstance(VectorB,CVector)):
         R = (A.x * B.x) + (A.y * B.y)
 
-        return R
+        return round(R,13)
     else:
         return 0
 
@@ -90,13 +195,13 @@ def ProdCruz(VectorA,VectorB):
         R=CVector3D()
         #----------------------------------------------------------------
         # calcula el producto cruz de los vectores, con resultado vector 
-        R.x = (+1) * (A.y * B.z - A.z * B.y)
-        R.y = (-1) * (A.x * B.z - A.z * B.x)
-        R.z = (+1) * (A.x * B.y - A.y * B.x)
+        R.x = round((+1) * (A.y * B.z - A.z * B.y), 13)
+        R.y = round((-1) * (A.x * B.z - A.z * B.x), 13)
+        R.z = round((+1) * (A.x * B.y - A.y * B.x), 13)
     elif (isinstance(VectorA,CVector) and isinstance(VectorB,CVector)):
         R.x = 0
         R.y = 0
-        R.z = (+1) * (A.x * B.y - A.y * B.x)
+        R.z = round((+1) * (A.x * B.y - A.y * B.x), 13)
     else:
         R.x = 0
         R.y = 0
@@ -104,6 +209,187 @@ def ProdCruz(VectorA,VectorB):
 
     return R
     
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+def DeflexionRad(VectorA,VectorB):
+    C = CVector(1,2);
+    
+    if (isinstance(VectorA,CVector) and isinstance(VectorB,CVector)):
+        #----------------------------------------------------------------
+        # calcula la deflexion entre los vectores (ángulo entre ellos)
+        R = VectorA.Deflexion_Rad(VectorB)
+    elif (isinstance(VectorA,CVector3D) and isinstance(VectorB,CVector3D)):
+        R =  VectorA.Deflexion_RadXY
+    else:
+        R = 0
+
+    return R
+
+def DeflexionGrad(VectorA,VectorB):
+    if (isinstance(VectorA,CVector) and isinstance(VectorB,CVector)):
+        S = DeflexionRad(VectorA,VectorB) * 180.0 / 3.14159265358979323846264
+    else:
+        S = 0
+    return round(S,8)
+
+def AdicionVectorDeflexion(VectAnterior, Longitud, Deflexion, Referencia):
+    print('hola')
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#     MUESTRA UN ÁNGULO EXPRESADO EN GRADOS SEPARADO EN GRADOS, MINUTOS Y SEGUNDOS.
+def Grd_Gms(GrdsDec):
+    GrdsDec=GrdsDec if GrdsDec >= 0 else (360 + GrdsDec)
+    G=int(GrdsDec)
+    M=int((GrdsDec-G)*60.0)
+    S=round((GrdsDec-G-M/60.0)*3600,2)
+    if S == 60:
+        S = 0.0
+        M = int(M+1)
+        if M == 60:
+            M = int(0)
+            G = int(G+1)
+    G = G % 360    
+    print("Ángulo: {:2d}".format(G) + "° {:02d}".format(M)+"\' {:05.2f}".format(S) + "\"")
+
+def Gms_Grd(Grados: int, minutos: int, segundos:float):
+    Signo= -1 if Grados < 0 else 1    
+    Grados   = abs(Grados)
+    minutos  = abs(minutos)
+    segundos = abs(segundos)
+    return Signo * (Grados + minutos / 60.0 + segundos / 3600.0)
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#     DIBUJA LOS VECTORES EN GRÁFICA
+#
+
+def PloteaListVect(ListaVectores):
+    AnchoFlechaEje = 0.1
+    x = [0]
+    y = [0]
+
+    plt.arrow(-1,0,3,0, width = AnchoFlechaEje)
+    plt.arrow(0,-1,0,3, width = AnchoFlechaEje)
+
+    for Vec in ListaVectores:
+        print("( " + str(Vec.x) +"; "+ str(Vec.y) + " )")
+        plt.arrow(0,0,Vec.x-0.5*math.cos(Vec.DireccionPolar_r),Vec.y-0.5*math.sin(Vec.DireccionPolar_r), width = 0.1, color = 'r')
+
+    plt.plot(x,y,color = 'b')
+
+    plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+    plt.xlabel('Este (x-->)')
+    plt.ylabel('Norte (y-->)')
+    plt.show()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#     DIBUJA LA SUMA DE VECTORES EN GRÁFICA TOMANDO EL ORDEN DE LOS VECTORES EN LA LISTA
+#
+
+def PloteaSumListVect(ListaVectores):
+    AnchoFlechaEje = 0.1
+    x = [0]
+    y = [0]
+    i = int(0)
+
+    for Vec in ListaVectores:
+        x.append(Vec.x + x[i])
+        y.append(Vec.y + y[i])
+        i += int(1)
+
+    plt.arrow(-1,0,3,0, width = AnchoFlechaEje)
+    plt.arrow(0,-1,0,3, width = AnchoFlechaEje)
+
+    for j in range(0,len(x)-1):
+        print(str(x[j]) +";"+ str(y[j]) + " --- " + str(x[j+1]-x[j]) + ";" + str( y[j+1]-y[j]))
+        Tmp=CVector(x[j+1]-x[j],y[j+1]-y[j])
+        plt.arrow(x[j],y[j],Tmp.x-0.5*math.cos(Tmp.DireccionPolar_r),Tmp.y-0.5*math.sin(Tmp.DireccionPolar_r), width = 0.1, color = 'r')
+
+    plt.plot(x,y,color = 'b')
+
+    plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+    plt.xlabel('Este (x-->)')
+    plt.ylabel('Norte (y-->)')
+    plt.show()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#     DIBUJA VECTORES EN 2 DIMENSIONES SUMANDOLOS CON LA ALTERNATIVA DE SUMAS (APLICANDO DISTRIBUTIVA A LAS SUMAS)
+def PloteaSumVec(Ver_Alternativas: bool = False, VectA: CVector = CVector(1,1), VectB = None, VectC = None):
+    AnchoFlechaEje = 0.1
+    if isinstance(VectA,CVector) and isinstance(VectB,CVector) and isinstance(VectC,CVector):
+        x = [0, VectA.x, VectA.x + VectB.x, VectA.x + VectB.x + VectC.x]
+        y = [0, VectA.y, VectA.y + VectB.y, VectA.y + VectB.y + VectC.y]
+
+        plt.plot(x,y)
+
+        plt.arrow(0,0,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+        plt.arrow(VectA.x,VectA.y,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+        plt.arrow(VectA.x+VectB.x,VectA.y+VectB.y,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+
+        if Ver_Alternativas == True:
+            plt.arrow(0,0,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+            plt.arrow(VectB.x,VectB.y,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+            plt.arrow(VectA.x+VectB.x,VectA.y+VectB.y,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+
+            plt.arrow(0,0,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+            plt.arrow(VectB.x,VectB.y,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+            plt.arrow(VectB.x+VectC.x,VectB.y+VectC.y,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+
+            plt.arrow(0,0,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+            plt.arrow(VectC.x,VectC.y,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+            plt.arrow(VectA.x+VectC.x,VectA.y+VectC.y,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+
+            plt.arrow(0,0,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+            plt.arrow(VectC.x,VectC.y,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+            plt.arrow(VectB.x+VectC.x,VectB.y+VectC.y,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+
+            plt.arrow(0,0,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+            plt.arrow(VectA.x,VectA.y,VectC.x-0.5*math.cos(VectC.DireccionPolar_r),VectC.y-0.5*math.sin(VectC.DireccionPolar_r), width = 0.1, color = 'y')
+            plt.arrow(VectA.x+VectC.x,VectA.y+VectC.y,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+
+        plt.arrow(-1,0,3,0, width = AnchoFlechaEje)
+        plt.arrow(0,-1,0,3, width = AnchoFlechaEje)
+
+        plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+        plt.xlabel('Este (x)')
+        plt.ylabel('Norte (y)')
+        plt.show()
+    elif isinstance(VectA,CVector) and isinstance(VectB,CVector) and VectC == None:
+        x = [0, VectA.x, VectA.x + VectB.x]
+        y = [0, VectA.y, VectA.y + VectB.y]
+
+        plt.plot(x,y)
+
+        plt.arrow(0,0,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+        plt.arrow(VectA.x,VectA.y,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+
+        if Ver_Alternativas == True:
+            plt.arrow(0,0,VectB.x-0.5*math.cos(VectB.DireccionPolar_r),VectB.y-0.5*math.sin(VectB.DireccionPolar_r), width = 0.1, color = 'b')
+            plt.arrow(VectB.x,VectB.y,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+
+        plt.arrow(-1,0,3,0, width = 0.05, color = 'm')
+        plt.arrow(0,-1,0,3, width = 0.05, color = 'm')
+
+        plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+        plt.xlabel('Este (x)')
+        plt.ylabel('Norte (y)')
+        plt.show()
+    elif isinstance(VectA,CVector) and VectB == None and VectC == None:
+        x = [0, VectA.x]
+        y = [0, VectA.y]
+
+        plt.plot(x,y)
+
+        plt.arrow(0,0,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), width = 0.1, color = 'r')
+
+        plt.arrow(-1,0,3,0, width = 0.05, color = 'm')
+        plt.arrow(0,-1,0,3, width = 0.05, color = 'm')
+
+        plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+        plt.xlabel('Este (x)')
+        plt.ylabel('Norte (y)')
+        plt.show()
+    else:
+        print("Error: no definió vectores")
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #     VER VECTORES DE 2 DIMENSIONES O 3 DIMENSIONES MEDIANTE DIFERENTES SISTEMAS DE REFERENCIA
