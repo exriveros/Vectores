@@ -21,8 +21,10 @@
 #   Lv = [a,b,c,d]
 
 # Representación gráfica de Vectores:
-#   PloteaListVect(Lv)                      Presenta todos los vectores en el origen
-#   PloetaSumListVect(Lv)                   Presenta la suma de los vectores en el orden de la lista
+#   PloteaListVect(Lv)                      Presenta todos los vectores en el origen 2D
+#   PloteaList3DVect(Lv)                    Presenta todos los vectores en el origen 3D
+#   PloetaSumListVect(Lv)                   Presenta la suma de los vectores en el orden de la lista 2D
+#   PloteaSumList3DVect(Lv)                 Presenta la suma de los vectores en el orden de la lista 3D
 #   PloteaSumVec(True,a,b,c)                Presenta graficamente las combinaciones de sumar a, b y c    (a+b+c; a+c+b; b+a+c; b+c+a; c+a+b; c+b+c)
 #   PloteaSumVec(True,a,b)                  Presenta graficamente las combinaciones de sumar a y b       (a+b; b+a)
 #   PloteaSumVec(False,a,b,c)               Presenta graficamente la suma a + b + c.    Usa el orden de entrada
@@ -300,6 +302,8 @@ def PloteaList3DVect(ListaVectores):
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
+
+    plt.title("Lista Vectores 3D")
     
     plt.show()
 
@@ -340,6 +344,8 @@ def PloteaSumList3DVect(ListaVectores):
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
+
+    plt.title("Suma Vectores 3D (orden lista)")
 
     plt.show()
 
