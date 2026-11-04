@@ -236,7 +236,7 @@ def AdicionVectorDeflexion(VectAnterior, Longitud, Deflexion, Referencia):
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #     MUESTRA UN ÁNGULO EXPRESADO EN GRADOS SEPARADO EN GRADOS, MINUTOS Y SEGUNDOS.
 def Grd_Gms(GrdsDec):
-    GrdsDec=GrdsDec if GrdsDec >= 0 else (360 + GrdsDec)
+    GrdsDec = GrdsDec if GrdsDec >= 0 else (360 + GrdsDec)
     G=int(GrdsDec)
     M=int((GrdsDec-G)*60.0)
     S=round((GrdsDec-G-M/60.0)*3600,2)
@@ -280,9 +280,68 @@ def PloteaListVect(ListaVectores):
     plt.ylabel('Norte (y-->)')
     plt.show()
 
+def PloteaList3DVect(ListaVectores):
+    fig = plt.figure()
+
+    ax = fig.add_subplot(111, projection = "3d")
+
+    plt.quiver(-1,0,0,3,0,0, color = 'b', arrow_length_ratio = 0.3)
+    plt.quiver(0,-1,0,0,3,0, color = 'b', arrow_length_ratio = 0.3)
+    plt.quiver(0,0,-1,0,0,3, color = 'b', arrow_length_ratio = 0.3)
+    
+    for Vec in ListaVectores:
+        print("( " + str(Vec.x) +"; "+ str(Vec.y) + " )")
+        plt.quiver(0,0,0,Vec.x,Vec.y, Vec.z,color = 'r', arrow_length_ratio = 0.2)
+
+    ax.set_xlim(-10,10)
+    ax.set_ylim(-10,10)
+    ax.set_zlim(-10,10)
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+    
+    plt.show()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #     DIBUJA LA SUMA DE VECTORES EN GRÁFICA TOMANDO EL ORDEN DE LOS VECTORES EN LA LISTA
 #
+
+def PloteaSumList3DVect(ListaVectores):
+    AnchoFlechaEje = 0.1
+    x = [0]
+    y = [0]
+    z = [0]
+    i = int(0)
+
+    for Vec in ListaVectores:
+        x.append(Vec.x + x[i])
+        y.append(Vec.y + y[i])
+        z.append(Vec.z + z[i])
+        i += int(1)
+
+    fig = plt.figure()
+
+    ax = fig.add_subplot(111, projection = "3d")
+
+    plt.quiver(-1,0,0,3,0,0, color = 'b', arrow_length_ratio = 0.3)
+    plt.quiver(0,-1,0,0,3,0, color = 'b', arrow_length_ratio = 0.3)
+    plt.quiver(0,0,-1,0,0,3, color = 'b', arrow_length_ratio = 0.3)
+
+    for j in range(0,len(x)-1):
+        print(str(x[j]) +";"+ str(y[j]) + " --- " + str(x[j+1]-x[j]) + ";" + str( y[j+1]-y[j]))
+        Tmp=CVector3D(x[j+1]-x[j],y[j+1]-y[j],z[j+1]-z[j])
+        plt.quiver(x[j],y[j],z[j],Tmp.x,Tmp.y, Tmp.z,color = 'r', arrow_length_ratio = 1/Tmp.magnitudxyz)
+
+    ax.set_xlim(-10,10)
+    ax.set_ylim(-10,10)
+    ax.set_zlim(-10,10)
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+
+    plt.show()
 
 def PloteaSumListVect(ListaVectores):
     AnchoFlechaEje = 0.1
@@ -387,6 +446,23 @@ def PloteaSumVec(Ver_Alternativas: bool = False, VectA: CVector = CVector(1,1), 
         plt.xlabel('Este (x)')
         plt.ylabel('Norte (y)')
         plt.show()
+    #elif isinstance(VectA,CVector3D) and VectB == None and VectC == None:
+    #    x = [0, VectA.x]
+    #    y = [0, VectA.y]
+    #    z = [0, VectA.z]
+    #
+    #    plt.plot3d(x,y.z)
+    #
+        #plt.arrow(0,0,VectA.x-0.5*math.cos(VectA.DireccionPolar_r),VectA.y-0.5*math.sin(VectA.DireccionPolar_r), ,width = 0.1, color = 'r')
+
+        #plt.arrow(-1,0,3,0, width = 0.05, color = 'm')
+        #plt.arrow(0,-1,0,3, width = 0.05, color = 'm')
+
+        #plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
+        #plt.xlabel('Este (x)')
+        #plt.ylabel('Norte (y)')
+
+    #    plt.show()
     else:
         print("Error: no definió vectores")
 
