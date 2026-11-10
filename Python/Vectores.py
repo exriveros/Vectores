@@ -1,6 +1,6 @@
 #***************************************************************
 # Aplicacion Vectores
-#           Fecha:      30/09/2026
+#           Fecha:      10/11/2026
 #           Actualiza:  7/11/2026
 #           Elaboró: Ernesto Riveros Ospina
 #***************************************************************
@@ -22,16 +22,17 @@
 #   Lv = [a,b,c,d]
 
 # Representación gráfica de Vectores:
-#   PloteaListVect(Lv)                              Presenta todos los vectores en el origen 2D
-#   PloteaList3DVect(Lv)                            Presenta todos los vectores en el origen 3D
-#   PloetaSumListVect(Lv)                           Presenta la suma de los vectores en el orden de la lista 2D
-#   PloetaSum2ListVect(LVini,LVfin,VerResultante)   Presenta la suma 2 listas de vectores cerrado si Unir es True por defecto
-#   PloteaSumList3DVect(Lv)                         Presenta la suma de los vectores en el orden de la lista 3D
-#   PloteaSumVec(True,a,b,c)                        Presenta graficamente las combinaciones de sumar a, b y c    (a+b+c; a+c+b; b+a+c; b+c+a; c+a+b; c+b+c)
-#   PloteaSumVec(True,a,b)                          Presenta graficamente las combinaciones de sumar a y b       (a+b; b+a)
-#   PloteaSumVec(False,a,b,c)                       Presenta graficamente la suma a + b + c.    Usa el orden de entrada
-#   PloteaSumVec(False,a,b)                         Presenta graficamente la suma a + b.        Usa el orden de entrada
-#   PloteaSumVec(False,a,MulEsc(-1,b))              Presenta graficamente la suma a - b.        Usa el orden de entrada
+#   PloteaListVect(Lv)                                              Presenta todos los vectores en el origen 2D
+#   PloteaList3DVect(Lv)                                            Presenta todos los vectores en el origen 3D
+#   PloetaSumListVect(Lv)                                           Presenta la suma de los vectores en el orden de la lista 2D
+#   PloteaSum2ListVect(LVini,LVfin,VerResultante,NoVerPrimero)      Presenta la suma 2 listas de vectores independientes. Si Unir es True (por defecto) las une con un vector resultante
+#   PloteaSum2ListVect3D(LVini,LVfin,VerResultante,NoVerPrimero)    Presenta la suma 2 listas de vectores independientes. Si Unir es True (por defecto) las une con un vector resultante
+#   PloteaSumList3DVect(Lv)                                         Presenta la suma de los vectores en el orden de la lista 3D
+#   PloteaSumVec(True,a,b,c)                                        Presenta graficamente las combinaciones de sumar a, b y c    (a+b+c; a+c+b; b+a+c; b+c+a; c+a+b; c+b+c)
+#   PloteaSumVec(True,a,b)                                          Presenta graficamente las combinaciones de sumar a y b       (a+b; b+a)
+#   PloteaSumVec(False,a,b,c)                                       Presenta graficamente la suma a + b + c.    Usa el orden de entrada
+#   PloteaSumVec(False,a,b)                                         Presenta graficamente la suma a + b.        Usa el orden de entrada
+#   PloteaSumVec(False,a,MulEsc(-1,b))                              Presenta graficamente la suma a - b.        Usa el orden de entrada
 
 # Presenta el vector 2D escrito:
 #   VerVector(a)                            Presenta todas las expresiones del vector
@@ -249,7 +250,7 @@ def Grd_Gms(GrdsDec):
     G = G % 360    
     print("Ángulo: {:2d}".format(G) + "° {:02d}".format(M)+"\' {:05.2f}".format(S) + "\"")
 
-def Gms_Grd(Grados: int, minutos: int, segundos:float):
+def Gms_Grd(Grados: int, minutos: int = 0, segundos:float=0):
     Signo= -1 if Grados < 0 else 1    
     Grados   = abs(Grados)
     minutos  = abs(minutos)
@@ -283,6 +284,8 @@ def PloteaListVect(ListaVectores):
     plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
     plt.xlabel('Este (x-->)')
     plt.ylabel('Norte (y-->)')
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaListVect')
     plt.show()
 
 def PloteaList3DVect(ListaVectores):
@@ -309,6 +312,8 @@ def PloteaList3DVect(ListaVectores):
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaList3DVect')
 
     plt.title("Lista Vectores 3D")
     
@@ -352,7 +357,8 @@ def PloteaSumList3DVect(ListaVectores):
     ax.set_zlabel("Z")
 
     plt.title("Suma Vectores 3D (orden lista)")
-
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaSumList3DVect')
     plt.show()
 
 def PloteaSumListVect(ListaVectores):
@@ -379,9 +385,12 @@ def PloteaSumListVect(ListaVectores):
     plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'b')
     plt.xlabel('Este (x-->)')
     plt.ylabel('Norte (y-->)')
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaSumListVect')
     plt.show()
 
-def PloteaSum2ListVect(ListaVect_PosIni,ListaVect_PosFin, Unir: bool = True):
+#-------------------------------------------------------------------------------------------
+def PloteaSum2ListVect(ListaVect_PosIni,ListaVect_PosFin, Unir: bool = True, NoVerPrimero: bool = False):
     AnchoFlechaEje = 0.1
     fin_a=CVector()
     fin_b=CVector()
@@ -396,16 +405,22 @@ def PloteaSum2ListVect(ListaVect_PosIni,ListaVect_PosFin, Unir: bool = True):
         i += int(1)
 
     fig = plt.figure()
+    plt.style.use('bmh')
     ax = fig.add_subplot()
     
-    
+    #Sistema de referencia-----------------------------------------
     plt.arrow(-1,0,3,0, width = AnchoFlechaEje)
     plt.arrow(0,-1,0,3, width = AnchoFlechaEje)
 
     for j in range(0,len(x)-1):
         Tmp=CVector(x[j+1],y[j+1])
-        V1 = plt.quiver(x[j],y[j],Tmp.x-x[j],Tmp.y-y[j], color = 'r', angles='xy', scale_units='xy',scale=1,)
-        if j==0:
+        if NoVerPrimero and j==0:
+            V1 = plt.quiver(x[j],y[j],Tmp.x-x[j],Tmp.y-y[j], color = 'w', angles='xy', scale_units='xy',scale=1,)
+        else:
+            V1 = plt.quiver(x[j],y[j],Tmp.x-x[j],Tmp.y-y[j], color = 'r', angles='xy', scale_units='xy',scale=1,)
+        if j==0 and NoVerPrimero == False:
+            V1.set_label('RutaPosIni')
+        elif j==1 and NoVerPrimero:
             V1.set_label('RutaPosIni')
         fin_a.x += Tmp.x - x[j]
         fin_a.y += Tmp.y - y[j]
@@ -441,9 +456,10 @@ def PloteaSum2ListVect(ListaVect_PosIni,ListaVect_PosFin, Unir: bool = True):
     xmax = (max(x) if max(x1)<max(x) else max(x1)) + 2
     ymax = (max(y) if max(y1)<max(y) else max(y1)) + 2
 
-    fig.text(0,0,"Resultante =" + ( "" if R.x > 0 else "(") + "{:8.4f}".format(R.x) + ( "" if R.x > 0 else ")") + " i\u0302 + " +  
+    fig.text(0,0.01,"Resultante =" + ( "" if R.x > 0 else "(") + "{:8.4f}".format(R.x) + ( "" if R.x > 0 else ")") + " i\u0302 + " +  
              ( "" if R.y > 0 else "(") + "{:8.4f}".format(R.y) + ( "" if R.y > 0 else ")") + " j\u0302" +
-             " = (" + str(round(R.magnitud,2)) + " ;\u2221 " + str(round(R.DireccionPolar_g,4)) + "° )")
+             " = (" + str(round(R.magnitud,2)) + " ;\u2221 " + str(round(R.DireccionPolar_g,4)) + "° )",
+              transform=ax.transAxes)
 
     DesplzTx = 0.25
     plt.text(fin_a.x+DesplzTx, fin_a.y+DesplzTx,"PosIni", color='m', size = 'x-large', style = 'italic',ha = 'center',weight = 'bold')
@@ -457,6 +473,109 @@ def PloteaSum2ListVect(ListaVect_PosIni,ListaVect_PosFin, Unir: bool = True):
     plt.grid(visible = 'true', which = 'both', axis = 'both', color = 'y')
     plt.xlabel('Este (x-->)')
     plt.ylabel('Norte (y-->)')
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaSum2ListVect')
+
+    plt.show()
+
+#-------------------------------------------------------------------------------------------
+def PloteaSum2ListVect3D(ListaVect3D_PosIni,ListaVect3D_PosFin, Unir: bool = True, NoVerPrimero: bool = False):
+    AnchoFlechaEje = 0.1
+    fin_a=CVector3D()
+    fin_b=CVector3D()
+
+    x = [0]
+    y = [0]
+    z = [0]
+    i = int(0)
+    
+    if len(ListaVect3D_PosIni)>0:
+        for Vec in ListaVect3D_PosIni:
+            x.append(Vec.x + x[i])
+            y.append(Vec.y + y[i])
+            z.append(Vec.z + z[i])
+            i += int(1)
+
+    fig = plt.figure()
+    plt.style.use('default')
+    ax = fig.add_subplot(111, projection = "3d")
+    
+    #Sistema de referencia-----------------------------------------
+    ancho = 0.3
+    ax.quiver(-1,0,0,3,0,0, color = 'm',arrow_length_ratio = ancho)
+    ax.quiver(0,-1,0,0,3,0, color = 'm',arrow_length_ratio = ancho)
+    ax.quiver(0,0,-1,0,0,3, color = 'm',arrow_length_ratio = ancho)
+
+    for j in range(0,len(x)-1):
+        Tmp=CVector3D(x[j+1],y[j+1],z[j+1])
+        if NoVerPrimero and j == 0:
+            V1 = ax.quiver(x[j], y[j], z[j], Tmp.x - x[j], Tmp.y - y[j], Tmp.z - z[j], color = 'w',arrow_length_ratio = 1/(Tmp.magnitudxyz if Tmp.magnitudxy > 1.0 else 5))
+        else:
+            V1 = ax.quiver(x[j], y[j], z[j], Tmp.x - x[j], Tmp.y - y[j], Tmp.z - z[j], color = 'r',arrow_length_ratio = 1/(Tmp.magnitudxyz if Tmp.magnitudxy > 1.0 else 5))
+        if j==0 and NoVerPrimero == False:
+            V1.set_label('RutaPosIni')
+        elif j==1 and NoVerPrimero:
+            V1.set_label('RutaPosIni')
+        fin_a.x += Tmp.x - x[j]
+        fin_a.y += Tmp.y - y[j]
+        fin_a.z += Tmp.z - z[j]
+        j += int(1)
+
+    x1 = [0]
+    y1 = [0]
+    z1 = [0]
+    i = int(0)
+
+    for Vec1 in ListaVect3D_PosFin:
+        x1.append(Vec1.x + x1[i])
+        y1.append(Vec1.y + y1[i])
+        z1.append(Vec1.z + z1[i])
+        i += int(1)
+
+    for j in range(0,len(x1)-1):
+        Tmp1=CVector3D(x1[j+1], y1[j+1], z1[j+1])
+        V2 = ax.quiver(x1[j], y1[j], z1[j], Tmp1.x - x1[j], Tmp1.y - y1[j], Tmp1.z - z1[j], color = 'b',arrow_length_ratio = 1/(Tmp1.magnitudxyz if Tmp1.magnitudxy > 1.0 else 5))
+        if j==0:
+            V2.set_label('RutaPosFin')
+        fin_b.x += Tmp1.x - x1[j]
+        fin_b.y += Tmp1.y - y1[j]
+        fin_b.z += Tmp1.z - z1[j]
+        j += int(1)
+    
+
+    R=CVector3D(fin_b.x - fin_a.x, fin_b.y - fin_a.y, fin_b.z - fin_a.z)
+
+    if Unir == True:
+        VR = ax.quiver(fin_a.x, fin_a.y, fin_a.z, R.x, R.y, R.z,arrow_length_ratio = 1/R.magnitudxyz, color = 'g')
+        VR.set_label('Resultante')
+    
+    xmin = (min(x) if min(x1)>min(x) else min(x1)) - 2
+    ymin = (min(y) if min(y1)>min(y) else min(y1)) - 2
+    zmin = (min(z) if min(z1)>min(z) else min(z1)) - 2
+    xmax = (max(x) if max(x1)<max(x) else max(x1)) + 2
+    ymax = (max(y) if max(y1)<max(y) else max(y1)) + 2
+    zmax = (max(z) if max(z1)<max(z) else max(z1)) + 2
+
+    ax.text2D(-0.1,0.999,"Resultante = " + ( "" if R.x > 0 else "(") + "{:8.4f}".format(R.x) + ( "" if R.x > 0 else ")") + " i\u0302 + " +  
+             ( "" if R.y > 0 else "(") + "{:8.4f}".format(R.y) + ( "" if R.y > 0 else ")") + " j\u0302 + " +
+             ( "" if R.z > 0 else "(") + "{:8.4f}".format(R.z) + ( "" if R.z > 0 else ")") + " k\u0302\n" +
+             "Resultante = (" + str(round(R.magnitudxyz,2)) + " ;\u2221 " + str(round(R.DireccionPolar_g,4)) + "° ; " + str(round(R.z,2)) + ")",
+              transform=ax.transAxes)
+
+    DesplzTx = 0.25
+    
+    ax.set_xlim(xmin,xmax)
+    ax.set_ylim(ymin,ymax)
+    ax.set_zlim(zmin,zmax)
+
+    ax.legend(loc='upper right')
+    
+    ax.grid(visible = 'true', which = 'both', axis = 'both', color = 'y')
+    ax.set_xlabel('Este (x)')
+    ax.set_ylabel('Norte (y)')
+    ax.set_zlabel('Elev (z)')
+    man=plt.get_current_fig_manager()
+    man.set_window_title('PloteaSum2ListVect3D')
     plt.show()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -501,6 +620,8 @@ def PloteaSumVec(Ver_Alternativas: bool = False, VectA: CVector = CVector(1,1), 
         plt.xlabel('Este (x)')
         plt.ylabel('Norte (y)')
         plt.title("Suma Combinada de 3 Vectores")
+        man=plt.get_current_fig_manager()
+        man.set_window_title('PloteaSumVec')
         plt.show()
     elif isinstance(VectA,CVector) and isinstance(VectB,CVector) and VectC == None:
         x = [0, VectA.x, VectA.x + VectB.x]
@@ -522,6 +643,8 @@ def PloteaSumVec(Ver_Alternativas: bool = False, VectA: CVector = CVector(1,1), 
         plt.xlabel('Este (x)')
         plt.ylabel('Norte (y)')
         plt.title("Suma Combinada de 2 Vectores")
+        man=plt.get_current_fig_manager()
+        man.set_window_title('PloteaSumVec')
         plt.show()
     elif isinstance(VectA,CVector) and VectB == None and VectC == None:
         x = [0, VectA.x]
@@ -538,6 +661,8 @@ def PloteaSumVec(Ver_Alternativas: bool = False, VectA: CVector = CVector(1,1), 
         plt.xlabel('Este (x)')
         plt.ylabel('Norte (y)')
         plt.title("Muestra 1 Vector")
+        man=plt.get_current_fig_manager()
+        man.set_window_title('PloteaSumVec')
         plt.show()
     else:
         print("Error: no definió vectores")
@@ -561,7 +686,7 @@ def VerVector(Vector, i=None): #imprime el vector usando diferentes referencias
             print("2). Por Vectorial Polar    ( {:8.2f}".format(Vector.magnitud) + " ;< " + "{:11.4f}".format(Vector.DireccionPolar_g) + "° )")
             print("3). Por Vectorial Azimutal ( {:8.2f}".format(Vector.magnitud) + " ;< " + "{:11.4f}".format(Vector.DireccionAzimutal_g) + "° )")
         elif i == 0:
-            print("Por Vectores Unitarios   {:10.4f}".format(Vector.x) + " i + " + "{:10.4f}".format(Vector.y) + " j ")
+            print("Por Vectores Unitarios   {:10.4f}".format(Vector.x) + " i\u0302 + " + "{:10.4f}".format(Vector.y) + " j\u0302 ")
         elif i == 1:
             print("Por Proyecciones       ( {:10.4f}".format(Vector.x) + " ; " + "{:10.4f}".format(Vector.y) + " )")
         elif i == 2:
